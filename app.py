@@ -152,19 +152,19 @@ def feedback(nodeId):
     return jsonify({"status": "success"}), 200
 
 
-# @app.route('/mark_learned/<nodeId>/<contentUnitId>', methods=['POST'])
-# def feedback(nodeId, contentUnitId):
-#     return jsonify({"status": "success"}), 200
+@app.route('/mark_learned/<nodeId>/<contentUnitId>', methods=['POST'])
+def mark_learned_unit(nodeId, contentUnitId):
+    return jsonify({"status": "success"}), 200
 
 
-# @app.route('/mark_liked/<nodeId>/<contentUnitId>', methods=['POST'])
-# def feedback(nodeId, contentUnitId):
-#     return jsonify({"status": "success"}), 200
+@app.route('/mark_liked/<nodeId>/<contentUnitId>', methods=['POST'])
+def mark_liked_unit(nodeId, contentUnitId):
+    return jsonify({"status": "success"}), 200
 
 
-# @app.route('/get_updates', methods=['GET'])
-# def feedback():
-#     new_update = Update(UpdateStatus.update_received, "title", "text", "url", "11/27/23 14:28")
+@app.route('/get_updates', methods=['GET'])
+def get_updates():
+    new_update = Update(UpdateStatus.update_received, "title", "text", "url", "11/27/23 14:28")
 #     return jsonify(new_update.serialize()), 200
 
 
