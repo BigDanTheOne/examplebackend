@@ -119,10 +119,10 @@ def search():
 @app.route('/node_content/<nodeId>', methods=['GET'])
 def get_content(nodeId):
     first_sum = """"
-    Differential equations are a mathematical tool for describing change, and can be used to model physical systems. In this video, a pendulum is used as an example to show how differential equations can be used to understand the behavior of a system. The equations are complex, but provide insight into how the system behaves. Differential equations can also be used to explore how systems interact, and to simulate the behavior of systems.
+    Differential [] equations are a mathematical tool for describing change, and can be used to model physical systems. In this video, a pendulum is used as an example to show how differential equations can be used to understand the behavior of a system. The equations are complex, but provide insight into how the system behaves. Differential equations can also be used to explore how systems interact, and to simulate the behavior of systems.
     """
     second_sum = """
-        •   Дифференциальные уравнения - это уравнения, которые связывают производные функции с самой функцией и независимыми переменными.
+        •   Дифференциальные уравнения ---- это уравнения, которые связывают производные функции с самой функцией и независимыми переменными.
         •   Они используются для описания различных физических, технических и биологических процессов.
         •   Существуют различные типы дифференциальных уравнений, включая обыкновенные дифференциальные уравнения, уравнения в частных производных и стохастические дифференциальные уравнения.
         •   Решение дифференциальных уравнений часто является сложной задачей, но существуют методы, такие как метод Эйлера и метод Рунге-Кутты, для их численного решения.
@@ -130,7 +130,7 @@ def get_content(nodeId):
         •   Существует множество программ CAS, которые могут решать дифференциальные уравнения, включая Maple, Mathematica, Maxima, SageMath, SymPy и Xcas.
     """
     third_sum = """
-    •   Функционально-дифференциальные уравнения (FDE) - это уравнения, которые включают в себя функции, зависящие от времени и от предыдущих значений функции.
+    •   Функционально-дифференциальные уравнения - это уравнения, которые включают в себя функции, зависящие от времени и от предыдущих значений функции.
     •   FDE используются в различных областях, включая медицину, механику, биологию и экономику.
     •   FDE могут быть решены с использованием численных методов, таких как метод Эйлера и метод Рунге-Кутты.
     •   FDE могут быть классифицированы по различным типам, включая уравнения с запаздыванием, нейтральные уравнения и интегро-дифференциальные уравнения.
@@ -141,8 +141,8 @@ def get_content(nodeId):
         "id": 1,
         "content": [
             ContentUnit('unitid_1', "Differential equations, a tourist's guide", ContentType.video, first_sum, "30 minutes", "https://www.youtube.com/watch?v=p_di4Zn4wz4").serialize(),
-            ContentUnit('unitid_2', "Differential equatione", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation").serialize(),
-            ContentUnit('unitid_3', "Functional differential equation", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation").serialize()
+            ContentUnit('unitid_2', "Differential equationes", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation").serialize(),
+            ContentUnit('unitid_3', "Functional differential equations", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation").serialize()
         ],
         "test": TestStatus.not_passed,
         "total": 3,
