@@ -1,8 +1,10 @@
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, Response
 import enum
 from flask_cors import CORS
 import json
 import random
+import time
+
 
 app = Flask(__name__)
 CORS(app)
@@ -222,6 +224,29 @@ def get_updates():
         new_update = Update(UpdateStatus.no_updates, '', '', '', '')
     return jsonify(new_update.serialize()), 200
 
+def generate_bot_response(message):
+    # Эмуляция генерации ответа по частям
+    for word in message.split(''):
+        time.sleep(0.5)
+        yield word
+    yield 'END'
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    message = data.get('message', '')
+
+    def generate():
+        answer = ''
+        for piece in generate_bot_response(message):
+            if piece == 'END':
+                json_data = json.dumps({"end": True})
+            else:
+                answer += piece
+                json_data = json.dumps({"response": answer})
+            yield f"data:{json_data}\n\n"
+
+    return Response(generate(), content_type='text/plain')
 
 if __name__ == '__main__':
     app.run(ssl_context='adhoc')
