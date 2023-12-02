@@ -195,8 +195,8 @@ def get_feedback(nodeId):
 
 @app.route('/mark_learned/<nodeId>', methods=['POST'])
 def feedback(nodeId):
-    global knows
-    knows = not knows
+    global knows_node
+    knows_node = not knows_node
     return jsonify({"status": "success"}), 200
 
 
