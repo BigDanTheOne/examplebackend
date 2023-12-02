@@ -38,6 +38,7 @@ class NodeStatus(enum.Enum):
     to_repeat = 2  # Пользователю нужно повторить эту вершину (жёлтый цвет)
 
 
+
 class TestStatus(enum.Enum):
     passed = 0
     not_passed = 1
@@ -96,9 +97,9 @@ def search():
     query = request.args.get('q', '')
     result = {
         "nodes": [
-            ["nodeid1", "nodetitle1", NodeStatus.to_learn],
-            ["nodeid2", "nodetitle2", NodeStatus.learned],
-            ["nodeid2", "nodetitle2", NodeStatus.to_repeat],
+            ["nodeid1", "nodetitle1", 0],
+            ["nodeid2", "nodetitle2", 1],
+            ["nodeid2", "nodetitle2", 2],
         ],
         "edges": [
             ["nodeid1", "nodeid2"],
