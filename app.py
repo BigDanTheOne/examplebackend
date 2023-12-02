@@ -96,12 +96,14 @@ def search():
     query = request.args.get('q', '')
     result = {
         "nodes": [
-            ["nodeid1", "nodetitle1"],
-            ["nodeid2", "nodetitle2"]
+            ["nodeid1", "nodetitle1", NodeStatus.to_learn],
+            ["nodeid2", "nodetitle2", NodeStatus.learned],
+            ["nodeid2", "nodetitle2", NodeStatus.to_repeat],
         ],
         "edges": [
-            ["nodeid1", "nodeid2"]
-        ]
+            ["nodeid1", "nodeid2"],
+            ["nodeid2", "nodeid3"]
+             ]
     }
     return jsonify(result), 200
 
