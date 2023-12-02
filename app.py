@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request, abort
 import enum
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Dummy data for demonstration purposes
 users = {
