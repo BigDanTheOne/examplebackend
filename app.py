@@ -99,7 +99,7 @@ def search():
         "nodes": [
             ["nodeid1", "nodetitle1", 0],
             ["nodeid2", "nodetitle2", 1],
-            ["nodeid2", "nodetitle2", 2],
+            ["nodeid3", "nodetitle3", 2],
         ],
         "edges": [
             ["nodeid1", "nodeid2"],
