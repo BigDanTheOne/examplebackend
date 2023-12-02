@@ -1,4 +1,4 @@
 pyopenssl
 Flask
 Gunicorn
-flask-co
+flask-cors
