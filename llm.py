@@ -1,6 +1,6 @@
 from openai import OpenAI
 import httpx
-API_KEY = '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'
+API_KEY = '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'
 proxies = {
    'http://': 'http://20.163.133.5:80',
    'https://': 'https://20.206.106.192:80',
@@ -203,8 +203,8 @@ def build_graph(subject):
   response = client.chat.completions.create(
     model = "gpt-3.5-turbo",
     messages = [
-                 {"role": "system", "content": make_prompt(subject)},
-                 # {"role": "user", "content": "content"},
+                 {"role": "system", "content": make_prompt('мера Лебега')},
+                 {"role": "user", "content": "content"},
                ],
     temperature = 0,
     max_tokens = 1024
@@ -212,6 +212,7 @@ def build_graph(subject):
   print(response)
   return response
 
+build_graph('Мера Лебега')
 
 # def text_to_summary(content):
 #
