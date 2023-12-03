@@ -96,12 +96,8 @@ def test(nodeId):
     return jsonify(response), 200
 
 @app.route('/llm/<subject>', methods=['GET'])
-def test(subject):
+def tessdsdst(subject):
     response = build_graph(subject)
-    # response = {
-    #     "questions": ["question 1", "question 2", "question 3", "question 4"],
-    #     "len": 4
-    # }
     return jsonify(response), 200
 
 @app.route('/get_feedback/<nodeId>', methods=['POST'])
