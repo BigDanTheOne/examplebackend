@@ -1,6 +1,6 @@
 from openai import OpenAI
 import httpx
-API_KEY = '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'
+API_KEY = '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'
 proxies = {
    'http://': 'http://20.163.133.5:80',
    'https://': 'https://20.206.106.192:80',
@@ -15,7 +15,6 @@ def make_prompt(subject):
   "создавал в этом диалоге. и в будущем используй и связывай между собой.:" \
   """result = {
       "nodes": [
-          ["id", "title", status],
           ["node1", "Целые числа", status],
           ["node2", "Натуральные числа", status],
           ["node3", "Действительные числа", status],
