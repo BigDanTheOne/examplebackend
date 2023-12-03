@@ -45,37 +45,20 @@ def search():
 
 @app.route('/node_content/<nodeId>', methods=['GET'])
 def get_content(nodeId):
-    cu = math_graph['nodes'][id_to_index_math[nodeId]][3]
-    # cu = ContentUnit(**cu)
-    first_sum = """"
-    Differential [] equations are a mathematical tool for describing change, and can be used to model physical systems. In this video, a pendulum is used as an example to show how differential equations can be used to understand the behavior of a system. The equations are complex, but provide insight into how the system behaves. Differential equations can also be used to explore how systems interact, and to simulate the behavior of systems.
-    """
-    second_sum = """
-        •   Дифференциальные уравнения ---- это уравнения, которые связывают производные функции с самой функцией и независимыми переменными.
-        •   Они используются для описания различных физических, технических и биологических процессов.
-        •   Существуют различные типы дифференциальных уравнений, включая обыкновенные дифференциальные уравнения, уравнения в частных производных и стохастические дифференциальные уравнения.
-        •   Решение дифференциальных уравнений часто является сложной задачей, но существуют методы, такие как метод Эйлера и метод Рунге-Кутты, для их численного решения.
-        •   Дифференциальные уравнения тесно связаны с теорией разностных уравнений и имеют приложения в различных областях, включая математику, физику, инженерию и экономику.
-        •   Существует множество программ CAS, которые могут решать дифференциальные уравнения, включая Maple, Mathematica, Maxima, SageMath, SymPy и Xcas.
-    """
-    third_sum = """
-    •   Функционально-дифференциальные уравнения - это уравнения, которые включают в себя функции, зависящие от времени и от предыдущих значений функции.
-    •   FDE используются в различных областях, включая медицину, механику, биологию и экономику.
-    •   FDE могут быть решены с использованием численных методов, таких как метод Эйлера и метод Рунге-Кутты.
-    •   FDE могут быть классифицированы по различным типам, включая уравнения с запаздыванием, нейтральные уравнения и интегро-дифференциальные уравнения.
-    •   Уравнения с запаздыванием зависят от прошлых и текущих значений функции, нейтральные уравнения зависят от прошлых и текущих значений функции и производных с запаздываниями, а интегро-дифференциальные уравнения включают интегралы и производные некоторой функции по ее аргументу.
-    •   FDE использовались в моделях, определяющих будущее поведение явлений, зависящих от прошлого.
-    •   Примеры моделей, использующих FDE, включают модель смешивания, модель хищника-жертвы Вольтерры и модель эпидемии ВИЧ."""
+    units_len = len(math_graph['nodes'][id_to_index_math[nodeId]]) - 3
+    units = []
+    for i in range(units_len):
+        units.append(math_graph['nodes'][id_to_index_math[nodeId]][3 + i])
     response = {
         "id": 1,
-        "content": [
-            # ContentUnit('unitid_1', "Differential equations, a tourist's guide", ContentType.video, first_sum, "30 minutes", "https://www.youtube.com/watch?v=p_di4Zn4wz4", done, liked_).serialize(),
-            # ContentUnit('unitid_2', "Differential equationes", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation", done, liked_).serialize(),
-            # ContentUnit('unitid_3', "Functional differential equations", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation", done, liked_).serialize()
-            cu
-        ],
+        "content": units,
+            # # ContentUnit('unitid_1', "Differential equations, a tourist's guide", ContentType.video, first_sum, "30 minutes", "https://www.youtube.com/watch?v=p_di4Zn4wz4", done, liked_).serialize(),
+            # # ContentUnit('unitid_2', "Differential equationes", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation", done, liked_).serialize(),
+            # # ContentUnit('unitid_3', "Functional differential equations", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation", done, liked_).serialize()
+            # cu
+        # ],
         "test": TestStatus.not_passed,
-        "total": 1,
+        "total": units_len,
         "status": math_graph['nodes'][id_to_index_math[nodeId]][2],
     }
     return jsonify(response), 200
