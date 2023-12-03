@@ -5,7 +5,7 @@ import json
 import random
 import time
 from data import *
-from llm import build_graph
+# from llm import build_graph
 
 
 app = Flask(__name__)
@@ -45,15 +45,8 @@ def search():
 
 @app.route('/node_content/<nodeId>', methods=['GET'])
 def get_content(nodeId):
-    global knows_node, knows, liked
-    done, liked_ = False, False
-    status_node = NodeStatus.to_learn
-    if knows_node:
-        status = NodeStatus.learned
-    if knows:
-        done = True
-    if liked:
-        liked_=True
+    cu = math_graph['nodes'][id_to_index_math[nodeId]][3]
+    # cu = ContentUnit(**cu)
     first_sum = """"
     Differential [] equations are a mathematical tool for describing change, and can be used to model physical systems. In this video, a pendulum is used as an example to show how differential equations can be used to understand the behavior of a system. The equations are complex, but provide insight into how the system behaves. Differential equations can also be used to explore how systems interact, and to simulate the behavior of systems.
     """
@@ -76,13 +69,14 @@ def get_content(nodeId):
     response = {
         "id": 1,
         "content": [
-            ContentUnit('unitid_1', "Differential equations, a tourist's guide", ContentType.video, first_sum, "30 minutes", "https://www.youtube.com/watch?v=p_di4Zn4wz4", done, liked_).serialize(),
-            ContentUnit('unitid_2', "Differential equationes", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation", done, liked_).serialize(),
-            ContentUnit('unitid_3', "Functional differential equations", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation", done, liked_).serialize()
+            # ContentUnit('unitid_1', "Differential equations, a tourist's guide", ContentType.video, first_sum, "30 minutes", "https://www.youtube.com/watch?v=p_di4Zn4wz4", done, liked_).serialize(),
+            # ContentUnit('unitid_2', "Differential equationes", ContentType.text, second_sum, "45 minutes", "https://en.wikipedia.org/wiki/Differential_equation", done, liked_).serialize(),
+            # ContentUnit('unitid_3', "Functional differential equations", ContentType.text, third_sum, "1 hour 30 minutes", "https://en.wikipedia.org/wiki/Functional_differential_equation", done, liked_).serialize()
+            cu
         ],
         "test": TestStatus.not_passed,
-        "total": 3,
-        "status": status_node,
+        "total": 1,
+        "status": math_graph['nodes'][id_to_index_math[nodeId]][2],
     }
     return jsonify(response), 200
 
@@ -95,10 +89,10 @@ def test(nodeId):
     }
     return jsonify(response), 200
 
-@app.route('/llm/<subject>', methods=['GET'])
-def tessdsdst(subject):
-    response = build_graph(subject)
-    return jsonify(response), 200
+# @app.route('/llm/<subject>', methods=['GET'])
+# def tessdsdst(subject):
+#     response = build_graph(subject)
+#     return jsonify(response), 200
 
 @app.route('/get_feedback/<nodeId>', methods=['POST'])
 def get_feedback(nodeId):
