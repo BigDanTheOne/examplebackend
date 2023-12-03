@@ -115,12 +115,25 @@ def get_feedback(nodeId):
     return jsonify(response), 200
 
 
+def paint(nodeId):
+    math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.learned
+    for edge in math_graph['edges']:
+        if edge[1] == nodeId:
+            paint(edge[0])
+
+def unpaint(nodeId):
+    math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.to_repeat
+    for edge in math_graph['edges']:
+        if edge[0] == nodeId:
+            unpaint(edge[1])
+
 @app.route('/mark_learned/<nodeId>', methods=['POST'])
 def feedback(nodeId):
     if math_graph['nodes'][id_to_index_math[nodeId]][2] == NodeStatus.learned:
-        math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.to_learn
+        unpaint(math_graph['nodes'][id_to_index_math[nodeId]][2])
     else:
-        math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.learned
+        paint(math_graph['nodes'][id_to_index_math[nodeId]][2])
+
 
     # global knows_node
     # knows_node = not knows_node
