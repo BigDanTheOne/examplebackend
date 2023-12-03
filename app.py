@@ -96,34 +96,37 @@ def get_feedback(nodeId):
     return jsonify(response), 200
 
 
-def paint(nodeId):
+def paint(nodeId, visited):
+    visited.add(nodeId)
     math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.learned
     for edge in math_graph['edges']:
-        if edge[1] == nodeId:
-            print("Paint", nodeId)
-            paint(edge[0])
+        if edge[1] == nodeId and edge[0] not in visited:
+            print("Paint", edge[0])
+            paint(edge[0], visited)
 
-def unpaint(nodeId):
+def unpaint(nodeId, visited):
+    visited.add(nodeId)
     math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.to_repeat
     for edge in math_graph['edges']:
-        if edge[0] == nodeId:
-            print("Unpaint", nodeId)
-            unpaint(edge[1])
+        if edge[0] == nodeId and edge[1] not in visited:
+            print("Unpaint", edge[1])
+            unpaint(edge[1], visited)
 
 
 @app.route('/mark_learned/<nodeId>', methods=['POST'])
 def feedback(nodeId):
+    visited = set()
     if math_graph['nodes'][id_to_index_math[nodeId]][2] == NodeStatus.learned:
         print("Unpaint", nodeId)
-        unpaint(math_graph['nodes'][id_to_index_math[nodeId]][0])
+        unpaint(math_graph['nodes'][id_to_index_math[nodeId]][0], visited)
     else:
         print("Paint", nodeId)
-        paint(math_graph['nodes'][id_to_index_math[nodeId]][0])
+        paint(math_graph['nodes'][id_to_index_math[nodeId]][0], visited)
 
 
     # global knows_node
     # knows_node = not knows_node
-    print(math_graph['nodes'])
+    # print(math_graph['nodes'])
     return jsonify({"status": "success"}), 200
 
 
