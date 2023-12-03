@@ -10,6 +10,8 @@ class NodeStatus(int, enum.Enum):
     to_learn = 0  # Пользователь ещё не ознакомился с вершиной (серый цвет)
     learned = 1  # Пользователь знает вершину (зелёный цвет)
     to_repeat = 2  # Пользователю нужно повторить эту вершину (жёлтый цвет)
+    finish = 3
+    basic = 4
 
 
 
@@ -28,12 +30,12 @@ class ContentUnit:
                  done: bool = False, liked: bool = False):
         self.id = id
         self.title = title
-        self.contentType = contentType
-        self.summary = summary
-        self.duration = duration
+        self.contentType = contentType  # 0 - text, 1 - video
+        self.summary = summary  # random
+        self.duration = duration  # random('1 час 30 минут, 45 минут, 10 минут, ...)
         self.url = url
-        self.done = done
-        self.liked = liked
+        self.done = done  # false
+        self.liked = liked  # false
 
     def serialize(self):
         return {

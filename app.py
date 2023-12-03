@@ -5,6 +5,8 @@ import json
 import random
 import time
 from data import *
+from llm import build_graph
+
 
 app = Flask(__name__)
 CORS(app)
@@ -93,6 +95,14 @@ def test(nodeId):
     }
     return jsonify(response), 200
 
+@app.route('/llm/<subject>', methods=['GET'])
+def test(subject):
+    response = build_graph(subject)
+    # response = {
+    #     "questions": ["question 1", "question 2", "question 3", "question 4"],
+    #     "len": 4
+    # }
+    return jsonify(response), 200
 
 @app.route('/get_feedback/<nodeId>', methods=['POST'])
 def get_feedback(nodeId):
