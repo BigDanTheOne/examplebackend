@@ -138,10 +138,10 @@ def unpaint(nodeId):
 def feedback(nodeId):
     if math_graph['nodes'][id_to_index_math[nodeId]][2] == NodeStatus.learned:
         print("Unpaint", nodeId)
-        unpaint(math_graph['nodes'][id_to_index_math[nodeId]][2])
+        unpaint(math_graph['nodes'][id_to_index_math[nodeId]][0])
     else:
         print("Paint", nodeId)
-        paint(math_graph['nodes'][id_to_index_math[nodeId]][2])
+        paint(math_graph['nodes'][id_to_index_math[nodeId]][0])
 
 
     # global knows_node
