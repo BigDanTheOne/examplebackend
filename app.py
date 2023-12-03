@@ -124,6 +124,7 @@ def feedback(nodeId):
 
     # global knows_node
     # knows_node = not knows_node
+    print(math_graph['nodes'])
     return jsonify({"status": "success"}), 200
 
 
