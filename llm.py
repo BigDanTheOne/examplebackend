@@ -1,6 +1,6 @@
 from openai import OpenAI
 import httpx
-API_KEY = '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'
+API_KEY = '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'
 proxies = {
    'http://': 'http://20.163.133.5:80',
    'https://': 'https://20.206.106.192:80',

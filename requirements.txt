@@ -2,3 +2,4 @@ pyopenssl
 Flask
 Gunicorn
 flask-cors
+openai
