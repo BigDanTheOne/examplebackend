@@ -117,15 +117,15 @@ def paint(nodeId):
     math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.learned
     for edge in math_graph['edges']:
         if edge[1] == nodeId:
-            paint(edge[0])
             print("Paint", nodeId)
+            paint(edge[0])
 
 def unpaint(nodeId):
     math_graph['nodes'][id_to_index_math[nodeId]][2] = NodeStatus.to_repeat
     for edge in math_graph['edges']:
         if edge[0] == nodeId:
-            unpaint(edge[1])
             print("Unpaint", nodeId)
+            unpaint(edge[1])
 
 
 @app.route('/mark_learned/<nodeId>', methods=['POST'])
@@ -134,8 +134,8 @@ def feedback(nodeId):
         print("Unpaint", nodeId)
         unpaint(math_graph['nodes'][id_to_index_math[nodeId]][2])
     else:
-        paint(math_graph['nodes'][id_to_index_math[nodeId]][2])
         print("Paint", nodeId)
+        paint(math_graph['nodes'][id_to_index_math[nodeId]][2])
 
 
     # global knows_node
